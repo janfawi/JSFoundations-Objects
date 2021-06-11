@@ -42,8 +42,8 @@ function numberOfVideos(channel) {
  ****************************************************************/
 function channelHasVideo(videoTitle, channel) {
   let found = false;
-  channel.videos.forEach((vid) => {
-    if (vid.title.toLowerCase() === videoTitle.toLowerCase()) found = true;
+  channel.videos.forEach((video) => {
+    if (video.title === videoTitle) found = true;
   });
   return found;
   // Your code here
