@@ -46,6 +46,8 @@ function channelHasVideo(videoTitle, channel) {
     if (video.title === videoTitle) found = true;
   });
   return found;
+
+  // return channel.videos.some((video) => video.title === videoTitle);
   // Your code here
 }
 // console.log(channelHasVideo("The Universal S", channels[0]));
@@ -60,8 +62,15 @@ function channelHasVideo(videoTitle, channel) {
  * BONUS: use iteration method `.find()`
  ****************************************************************/
 function getChannelByName(channelName, channels) {
-  // Your code here
+  let channelFound;
+
+  channels.forEach((channel) => {
+    if (channel.name === channelName) channelFound = channel;
+  });
+  return channelFound;
 }
+// return channels.find((channel) => channel.name === channelName);
+// }
 // console.log(getChannelByName("PowerfulJRE", channels))
 
 /**************************************************************
@@ -73,7 +82,18 @@ function getChannelByName(channelName, channels) {
  * BONUS: use iteration methods `.find()` and `.some()`
  ****************************************************************/
 function getChannelByVideoTitle(videoTitle, channels) {
-  // Your code here
+  // let foundChannel;
+  // channels.forEach((channel) => {
+  //   let foundVideo = false;
+  //   channel.videos.forEach((video) => {
+  //     if (video.title === videoTitle) foundVideo = true;
+  //   });
+  //   if (foundVideo) foundChannel = channel;
+  // });
+  // return foundChannel;
+  return channels.find((channel) =>
+    channel.videos.some((video) => video.title === videoTitle)
+  );
 }
 // console.log(getChannelByVideoTitle("The Universal S", channels));
 
@@ -86,7 +106,11 @@ function getChannelByVideoTitle(videoTitle, channels) {
  * Hint: use string method `.includes()` and iteration method `.filter()`
  ****************************************************************/
 function searchChannels(query, channels) {
-  // Your code here
+  return channels.filter((channel) => {
+    if (channel.name.includes(query) || channel.description.includes(query))
+      return true;
+    else return false;
+  });
 }
 // console.log(searchChannels("the", channels))
 
